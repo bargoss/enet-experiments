@@ -16,8 +16,13 @@ Library.Initialize();
         while (true)
         {
             server.Service(15,out netEvent);
-            if (netEvent.Type == EventType.None) { continue; }
-            Console.WriteLine("Server recieved event: " + netEvent.Type);
+            if (netEvent.Type != EventType.Receive) { continue; }
+
+            var readBuffer = new byte[1024];
+            netEvent.Packet.CopyTo(readBuffer);
+            var readString = Encoding.UTF8.GetString(readBuffer);
+            Console.WriteLine("Server recieved event: " + netEvent.Type + ", String value: " + readString);
+
             Thread.Sleep(100);
         }
     });
