@@ -40,6 +40,7 @@ public class ServerApp
                         clients.Remove(netEvent.Peer);
                         break;
                 }
+                netEvent.Packet.Dispose();
                 
                 Thread.Sleep(100);
             }
