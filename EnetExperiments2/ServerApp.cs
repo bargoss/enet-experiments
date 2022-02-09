@@ -9,7 +9,7 @@ public class ServerApp
     ushort port = 6005;
     
     private Host server;
-
+    List<Peer> clients = new List<Peer>();
     public void Init()
     {
         server = new Host();
@@ -22,12 +22,25 @@ public class ServerApp
             while (true)
             {
                 server.Service(15,out netEvent);
-                if (netEvent.Type != EventType.Receive) { continue; }
 
-                var readBuffer = new byte[1024];
-                netEvent.Packet.CopyTo(readBuffer);
-                var readString = Encoding.UTF8.GetString(readBuffer);
-                Console.WriteLine("Server recieved event: " + netEvent.Type + ", String value: " + readString);
+                switch (netEvent.Type)
+                {
+                    case EventType.Receive:
+                        var readBuffer = new byte[1024];
+                        netEvent.Packet.CopyTo(readBuffer);
+                        var readString = Encoding.UTF8.GetString(readBuffer);
+                        Console.WriteLine("Server recieved event: " + netEvent.Type + ", String value: " + readString);
+                        break;
+                    case EventType.Connect:
+                        Console.WriteLine("New client connected");
+                        clients.Add(netEvent.Peer);
+                        break;
+                    case EventType.Disconnect:
+                        Console.WriteLine("Client disconnected");
+                        clients.Remove(netEvent.Peer);
+                        break;
+                }
+                
                 Thread.Sleep(100);
             }
         });
