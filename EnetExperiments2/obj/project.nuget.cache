@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DiHkLvPpUeGYiU+LLYqt8T/bPPR65WAOW8zRIOmNwHRIYU+6UbnOhgD3WjIN3vNaoZ9kVzXLB3UXL3D6fY7/Cw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Hp\\enet-experiments\\EnetExperiments2\\EnetExperiments2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Hp\\.nuget\\packages\\enet-csharp\\2.4.7\\enet-csharp.2.4.7.nupkg.sha512"
+  ],
+  "logs": []
+}
