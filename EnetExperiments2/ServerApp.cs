@@ -5,7 +5,7 @@ using ENet;
 
 public class ServerApp
 {
-    string ip = "127.0.0.1";
+    //string ip = "127.0.0.1";
     ushort port = 6005;
     
     private Host server;
